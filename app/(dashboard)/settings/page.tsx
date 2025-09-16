@@ -25,68 +25,68 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Configurações</h1>
         <p className="text-muted-foreground">
-          Manage your account and application preferences
+          Gerencie sua conta e preferências da aplicação
         </p>
       </div>
 
       <Tabs defaultValue="general" className="space-y-4">
         <TabsList className="grid w-full grid-cols-2 lg:w-auto lg:grid-cols-6">
-          <TabsTrigger value="general">General</TabsTrigger>
-          <TabsTrigger value="profile">Profile</TabsTrigger>
-          <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
-          <TabsTrigger value="integrations">Integrations</TabsTrigger>
-          <TabsTrigger value="advanced">Advanced</TabsTrigger>
+          <TabsTrigger value="general">Geral</TabsTrigger>
+          <TabsTrigger value="profile">Perfil</TabsTrigger>
+          <TabsTrigger value="notifications">Notificações</TabsTrigger>
+          <TabsTrigger value="security">Segurança</TabsTrigger>
+          <TabsTrigger value="integrations">Integrações</TabsTrigger>
+          <TabsTrigger value="advanced">Avançado</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>General Settings</CardTitle>
+              <CardTitle>Configurações Gerais</CardTitle>
               <CardDescription>
-                Configure general application settings
+                Configure as configurações gerais da aplicação
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="app-name">Application Name</Label>
-                <Input id="app-name" placeholder="My AI SaaS Platform" />
+                <Label htmlFor="app-name">Nome da Aplicação</Label>
+                <Input id="app-name" placeholder="Minha Plataforma SaaS de IA" />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="app-url">Application URL</Label>
-                <Input id="app-url" placeholder="https://myapp.com" />
+                <Label htmlFor="app-url">URL da Aplicação</Label>
+                <Input id="app-url" placeholder="https://minhaapp.com" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="language">Language</Label>
+                <Label htmlFor="language">Idioma</Label>
                 <Select defaultValue="en">
                   <SelectTrigger id="language">
-                    <SelectValue placeholder="Select language" />
+                    <SelectValue placeholder="Selecionar idioma" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="en">English</SelectItem>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="pt">Portuguese</SelectItem>
+                    <SelectItem value="en">Inglês</SelectItem>
+                    <SelectItem value="es">Espanhol</SelectItem>
+                    <SelectItem value="fr">Francês</SelectItem>
+                    <SelectItem value="de">Alemão</SelectItem>
+                    <SelectItem value="pt">Português</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="timezone">Timezone</Label>
+                <Label htmlFor="timezone">Fuso Horário</Label>
                 <Select defaultValue="utc">
                   <SelectTrigger id="timezone">
-                    <SelectValue placeholder="Select timezone" />
+                    <SelectValue placeholder="Selecionar fuso horário" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="utc">UTC</SelectItem>
-                    <SelectItem value="est">Eastern Time</SelectItem>
-                    <SelectItem value="pst">Pacific Time</SelectItem>
-                    <SelectItem value="cst">Central Time</SelectItem>
+                    <SelectItem value="est">Horário do Leste</SelectItem>
+                    <SelectItem value="pst">Horário do Pacífico</SelectItem>
+                    <SelectItem value="cst">Horário Central</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -94,21 +94,21 @@ export default function SettingsPage() {
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">Preferences</h4>
+                <h4 className="text-sm font-medium">Preferências</h4>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Dark Mode</Label>
+                    <Label>Modo Escuro</Label>
                     <p className="text-sm text-muted-foreground">
-                      Enable dark mode for the application
+                      Ativar modo escuro para a aplicação
                     </p>
                   </div>
                   <Switch />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Auto-save</Label>
+                    <Label>Salvamento automático</Label>
                     <p className="text-sm text-muted-foreground">
-                      Automatically save changes
+                      Salvar alterações automaticamente
                     </p>
                   </div>
                   <Switch defaultChecked />
@@ -116,7 +116,7 @@ export default function SettingsPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save Changes</Button>
+              <Button>Salvar Alterações</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -124,44 +124,44 @@ export default function SettingsPage() {
         <TabsContent value="profile" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
+              <CardTitle>Informações do Perfil</CardTitle>
               <CardDescription>
-                Update your personal information
+                Atualize suas informações pessoais
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="first-name">First Name</Label>
-                  <Input id="first-name" placeholder="John" />
+                  <Label htmlFor="first-name">Nome</Label>
+                  <Input id="first-name" placeholder="João" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="last-name">Last Name</Label>
-                  <Input id="last-name" placeholder="Doe" />
+                  <Label htmlFor="last-name">Sobrenome</Label>
+                  <Input id="last-name" placeholder="Silva" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@example.com" />
+                <Input id="email" type="email" placeholder="joao@exemplo.com" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="bio">Bio</Label>
+                <Label htmlFor="bio">Biografia</Label>
                 <Textarea 
                   id="bio" 
-                  placeholder="Tell us about yourself"
+                  placeholder="Conte-nos sobre você"
                   rows={4}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="avatar">Avatar URL</Label>
-                <Input id="avatar" placeholder="https://example.com/avatar.jpg" />
+                <Input id="avatar" placeholder="https://exemplo.com/avatar.jpg" />
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Update Profile</Button>
+              <Button>Atualizar Perfil</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -169,32 +169,32 @@ export default function SettingsPage() {
         <TabsContent value="notifications" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Notification Preferences</CardTitle>
+              <CardTitle>Preferências de Notificação</CardTitle>
               <CardDescription>
-                Configure how you receive notifications
+                Configure como você recebe notificações
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <h4 className="text-sm font-medium flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  Email Notifications
+                  Notificações por Email
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label>Product Updates</Label>
+                      <Label>Atualizações do Produto</Label>
                       <p className="text-sm text-muted-foreground">
-                        Receive emails about new features
+                        Receber emails sobre novas funcionalidades
                       </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label>Security Alerts</Label>
+                      <Label>Alertas de Segurança</Label>
                       <p className="text-sm text-muted-foreground">
-                        Important security notifications
+                        Notificações importantes de segurança
                       </p>
                     </div>
                     <Switch defaultChecked />
@@ -203,7 +203,7 @@ export default function SettingsPage() {
                     <div className="space-y-0.5">
                       <Label>Marketing</Label>
                       <p className="text-sm text-muted-foreground">
-                        Promotional emails and offers
+                        Emails promocionais e ofertas
                       </p>
                     </div>
                     <Switch />
@@ -216,23 +216,23 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <h4 className="text-sm font-medium flex items-center gap-2">
                   <Smartphone className="h-4 w-4" />
-                  Push Notifications
+                  Notificações Push
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label>Desktop Notifications</Label>
+                      <Label>Notificações da Área de Trabalho</Label>
                       <p className="text-sm text-muted-foreground">
-                        Browser push notifications
+                        Notificações push do navegador
                       </p>
                     </div>
                     <Switch />
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label>Mobile Notifications</Label>
+                      <Label>Notificações Mobile</Label>
                       <p className="text-sm text-muted-foreground">
-                        Mobile app notifications
+                        Notificações do aplicativo mobile
                       </p>
                     </div>
                     <Switch defaultChecked />
@@ -241,7 +241,7 @@ export default function SettingsPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save Preferences</Button>
+              <Button>Salvar Preferências</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -249,36 +249,36 @@ export default function SettingsPage() {
         <TabsContent value="security" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Security Settings</CardTitle>
+              <CardTitle>Configurações de Segurança</CardTitle>
               <CardDescription>
-                Manage your account security
+                Gerencie a segurança da sua conta
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="current-password">Current Password</Label>
+                <Label htmlFor="current-password">Senha Atual</Label>
                 <Input id="current-password" type="password" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="new-password">New Password</Label>
+                <Label htmlFor="new-password">Nova Senha</Label>
                 <Input id="new-password" type="password" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirm-password">Confirm New Password</Label>
+                <Label htmlFor="confirm-password">Confirmar Nova Senha</Label>
                 <Input id="confirm-password" type="password" />
               </div>
 
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">Two-Factor Authentication</h4>
+                <h4 className="text-sm font-medium">Autenticação de Dois Fatores</h4>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Enable 2FA</Label>
+                    <Label>Ativar 2FA</Label>
                     <p className="text-sm text-muted-foreground">
-                      Add an extra layer of security
+                      Adicionar uma camada extra de segurança
                     </p>
                   </div>
                   <Switch />
@@ -288,31 +288,31 @@ export default function SettingsPage() {
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">Active Sessions</h4>
+                <h4 className="text-sm font-medium">Sessões Ativas</h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div className="space-y-0.5">
                       <p className="text-sm font-medium">Chrome on MacOS</p>
                       <p className="text-xs text-muted-foreground">
-                        Last active: 2 minutes ago
+                        Último acesso: 2 minutos atrás
                       </p>
                     </div>
-                    <Badge variant="secondary">Current</Badge>
+                    <Badge variant="secondary">Atual</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div className="space-y-0.5">
                       <p className="text-sm font-medium">Safari on iPhone</p>
                       <p className="text-xs text-muted-foreground">
-                        Last active: 1 hour ago
+                        Último acesso: 1 hora atrás
                       </p>
                     </div>
-                    <Button size="sm" variant="outline">Revoke</Button>
+                    <Button size="sm" variant="outline">Revogar</Button>
                   </div>
                 </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Update Security Settings</Button>
+              <Button>Atualizar Configurações de Segurança</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -320,9 +320,9 @@ export default function SettingsPage() {
         <TabsContent value="integrations" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Integrations</CardTitle>
+              <CardTitle>Integrações</CardTitle>
               <CardDescription>
-                Connect with external services
+                Conecte-se com serviços externos
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -339,7 +339,7 @@ export default function SettingsPage() {
                       <div>
                         <p className="font-medium">{integration.name}</p>
                         <p className="text-sm text-muted-foreground">
-                          {integration.status === "connected" ? "Connected" : "Not connected"}
+                          {integration.status === "connected" ? "Conectado" : "Não conectado"}
                         </p>
                       </div>
                     </div>
@@ -347,7 +347,7 @@ export default function SettingsPage() {
                       variant={integration.status === "connected" ? "outline" : "default"}
                       size="sm"
                     >
-                      {integration.status === "connected" ? "Disconnect" : "Connect"}
+                      {integration.status === "connected" ? "Desconectar" : "Conectar"}
                     </Button>
                   </div>
                 ))}
@@ -359,28 +359,28 @@ export default function SettingsPage() {
         <TabsContent value="advanced" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Advanced Settings</CardTitle>
+              <CardTitle>Configurações Avançadas</CardTitle>
               <CardDescription>
-                Advanced configuration options
+                Opções de configuração avançada
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">Developer Options</h4>
+                <h4 className="text-sm font-medium">Opções de Desenvolvedor</h4>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>API Access</Label>
+                    <Label>Acesso à API</Label>
                     <p className="text-sm text-muted-foreground">
-                      Enable API access for developers
+                      Ativar acesso à API para desenvolvedores
                     </p>
                   </div>
                   <Switch />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Debug Mode</Label>
+                    <Label>Modo de Depuração</Label>
                     <p className="text-sm text-muted-foreground">
-                      Show detailed error messages
+                      Mostrar mensagens de erro detalhadas
                     </p>
                   </div>
                   <Switch />
@@ -392,17 +392,17 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <h4 className="text-sm font-medium text-destructive flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4" />
-                  Danger Zone
+                  Zona de Perigo
                 </h4>
                 <Card className="border-destructive">
                   <CardHeader>
-                    <CardTitle className="text-base">Delete Account</CardTitle>
+                    <CardTitle className="text-base">Excluir Conta</CardTitle>
                     <CardDescription>
-                      Permanently delete your account and all data
+                      Excluir permanentemente sua conta e todos os dados
                     </CardDescription>
                   </CardHeader>
                   <CardFooter>
-                    <Button variant="destructive">Delete Account</Button>
+                    <Button variant="destructive">Excluir Conta</Button>
                   </CardFooter>
                 </Card>
               </div>

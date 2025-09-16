@@ -14,66 +14,164 @@ This is a modern Next.js application template with TypeScript, Tailwind CSS, and
 
 ## IMPORTANT RULES FOR AI MODIFICATIONS
 
-### 1. Component Usage Hierarchy
+### 1. Project Documentation Management (PROJECT_AI.md)
+
+#### CRITICAL: Always Maintain PROJECT_AI.md
+- **CREATE** a `PROJECT_AI.md` file at the root if it doesn't exist
+- **UPDATE** it continuously as the project evolves
+- **KEEP IT CONCISE** - Maximum 200 lines, summarize older information
+- **REPLACE** outdated information instead of appending endlessly
+
+#### Required Sections in PROJECT_AI.md:
+```markdown
+# Project Overview
+Brief description of what the app does (2-3 lines)
+
+## Target Audience
+Who will use this application
+
+## Core Features
+- Feature 1: Brief description
+- Feature 2: Brief description
+(List only main features, max 10)
+
+## Implementation Status
+### Completed ✅
+- Feature/component name: Brief note
+
+### In Progress 🚧
+- Feature/component name: Current status
+
+### Planned 📋
+- Feature/component name: Priority level
+
+## Technical Decisions
+- Key architecture choices
+- Important libraries/APIs used
+- Design patterns implemented
+
+## User Preferences
+- Specific requirements mentioned by user
+- Style preferences
+- Business logic rules
+```
+
+#### Update Rules:
+- **AFTER EACH SESSION**: Update implementation status
+- **WHEN USER CLARIFIES**: Update project overview or requirements
+- **KEEP HISTORICAL INFO MINIMAL**: Focus on current state, not history
+- **USE BULLET POINTS**: Avoid long paragraphs
+- **REMOVE COMPLETED ITEMS**: After 2-3 sessions, archive completed features
+
+### 2. Component Usage Hierarchy
 - **ALWAYS** use existing ShadCN components from `components/ui/` when available
 - **NEVER** recreate UI primitives that already exist (Button, Card, Input, etc.)
 - Place new custom components in `components/` directory
 - Complex layout components go in `components/layout/`
 
-### 2. Styling Guidelines
+### 3. Styling Guidelines - CRITICAL COLOR SYSTEM
+
+#### Color Usage (HIGHEST PRIORITY)
+- **ALWAYS USE** semantic color variables from the system defined in `globals.css`
+- **NEVER USE** direct Tailwind colors like `text-blue-500`, `bg-red-400`, etc.
+- **APPROVED COLOR SYSTEM:**
+  - `bg-background` / `text-foreground` - Main background and text colors
+  - `bg-card` / `text-card-foreground` - For cards and containers
+  - `bg-primary` / `text-primary-foreground` - Primary actions/highlights
+  - `bg-secondary` / `text-secondary-foreground` - Secondary elements
+  - `bg-muted` / `text-muted-foreground` - Subtle text and backgrounds
+  - `bg-accent` / `text-accent-foreground` - Accent elements
+  - `bg-destructive` / `text-destructive` - Dangerous actions/errors
+  - `border-border` - All borders
+  - `ring-ring` - Focus rings
+  - `bg-popover` / `text-popover-foreground` - Popovers and dropdowns
+
+#### Allowed Exceptions for Direct Colors
+- **ONLY** use direct Tailwind colors in very specific cases:
+  - Temporary status indicators (e.g., `text-green-500` for "online")
+  - Charts and data visualizations
+  - Decorative icons without semantic importance
+- **ALWAYS** justify the use of direct colors with a code comment
+
+#### Other Styling Guidelines
 - **USE** Tailwind CSS classes for all styling
 - **AVOID** inline styles or separate CSS files
-- **FOLLOW** the existing color scheme using CSS variables defined in `globals.css`
 - **MAINTAIN** dark mode support using `dark:` prefixes
 - **USE** consistent spacing: `space-y-4`, `gap-4`, `p-4`, `p-6`, etc.
+- **IMPLEMENT** all dark mode colors using variables - they change automatically
 
-### 3. Routing Best Practices
+### 4. Routing Best Practices
 - **USE** App Router conventions (folders with `page.tsx`)
 - **IMPLEMENT** loading states with `loading.tsx` when needed
 - **ADD** error boundaries with `error.tsx` for error handling
 - **CREATE** layouts with `layout.tsx` for shared UI
 - **ORGANIZE** related routes in route groups using `(groupname)` folders
 
-### 4. State Management
+### 5. State Management
 - **PREFER** React Server Components when possible
 - **USE** `'use client'` directive only when necessary (interactivity, hooks, browser APIs)
 - **IMPLEMENT** forms using React Hook Form when complex validation is needed
 - **USE** Zod for schema validation
 - **AVOID** unnecessary client-side state
 
-### 5. Data Fetching Patterns
-- **USE** Server Components for data fetching when possible
+### 6. Authentication & Database (MANDATORY: Firebase)
+
+#### Firebase is the ONLY approved solution for:
+- **Authentication**: Firebase Auth for all user authentication
+- **Database**: Firestore for all data storage
+- **File Storage**: Firebase Storage for images/files
+- **Real-time**: Firestore real-time listeners for live updates
+
+#### Implementation Requirements:
+- **ALWAYS** use Firebase SDK v9+ (modular syntax)
+- **NEVER** use other auth solutions (NextAuth, Clerk, Supabase, etc.)
+- **NEVER** use other databases (PostgreSQL, MongoDB, MySQL, etc.)
+- **USE** Firebase Admin SDK for server-side operations in API routes
+- **USE** Firebase Client SDK for client-side operations
+- **IMPLEMENT** proper security rules in Firestore
+- **USE** Firebase Auth custom claims for role-based access control
+
+#### Firebase Setup Files:
+- `lib/firebase/client.ts` - Client-side Firebase configuration
+- `lib/firebase/admin.ts` - Server-side Firebase Admin configuration
+- `lib/firebase/auth-context.tsx` - Auth context provider
+- `middleware.ts` - Auth middleware for protected routes
+
+### 7. Data Fetching Patterns
+- **USE** Firestore for ALL data fetching
+- **PREFER** Server Components with Firebase Admin SDK when possible
+- **USE** Firestore real-time listeners for live data in client components
 - **IMPLEMENT** loading and error states properly
 - **CACHE** data appropriately using Next.js caching strategies
 - **HANDLE** errors gracefully with try-catch blocks
 
-### 6. Code Quality Standards
+### 8. Code Quality Standards
 - **MAINTAIN** TypeScript strict mode
 - **DEFINE** proper types for all props and functions
 - **AVOID** using `any` type
 - **USE** descriptive variable and function names
 - **FOLLOW** existing naming conventions (camelCase for variables, PascalCase for components)
 
-### 7. File Organization
+### 9. File Organization
 - **ONE** component per file
 - **EXPORT** components as default exports from page files
 - **EXPORT** utilities and hooks as named exports
 - **GROUP** related functionality together
 
-### 8. Performance Optimization
+### 10. Performance Optimization
 - **LAZY LOAD** heavy components using dynamic imports
 - **OPTIMIZE** images using Next.js Image component
 - **MINIMIZE** client-side JavaScript
 - **USE** proper semantic HTML elements
 
-### 9. Accessibility Requirements
+### 11. Accessibility Requirements
 - **ADD** proper ARIA labels where needed
 - **ENSURE** keyboard navigation works
 - **MAINTAIN** proper heading hierarchy
 - **USE** semantic HTML elements
 - **TEST** with screen readers in mind
 
-### 10. Common Patterns to Follow
+### 12. Common Patterns to Follow
 
 #### Creating a New Page:
 ```typescript
@@ -81,7 +179,7 @@ This is a modern Next.js application template with TypeScript, Tailwind CSS, and
 export default function YourPage() {
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-4xl font-bold mb-8">Page Title</h1>
+      <h1 className="text-4xl font-bold mb-8 text-foreground">Page Title</h1>
       {/* Content */}
     </div>
   )
@@ -144,7 +242,8 @@ The template includes 5 example routes to demonstrate different patterns:
 2. Check for reusable components in `components/ui/`
 3. Create new components in `components/` if needed
 4. Follow the existing data flow patterns
-5. Maintain consistent styling with the rest of the app
+5. **USE ONLY SYSTEM COLOR VARIABLES** - never `bg-blue-500` or similar
+6. Maintain visual consistency with the rest of the app using semantic colors
 
 ### Modifying Existing Features
 1. Understand the current implementation first
@@ -172,7 +271,8 @@ The template includes 5 example routes to demonstrate different patterns:
 - **NEVER** commit sensitive information (API keys, passwords)
 - **NEVER** remove TypeScript types to "fix" errors
 - **NEVER** use deprecated Next.js features
-- **AVOID** mixing styling approaches (stick to Tailwind)
+- **NEVER** use direct Tailwind colors (`bg-blue-500`, `text-red-400`, etc.) - USE SYSTEM VARIABLES
+- **AVOID** mixing styling approaches (stick to Tailwind with system colors)
 - **AVOID** creating duplicate components
 - **AVOID** deeply nested component structures
 
@@ -200,10 +300,19 @@ Before considering any modification complete:
 
 This boilerplate is designed to be a starting point. When users request modifications:
 
-1. **UNDERSTAND** the full requirement before making changes
-2. **ASK** for clarification if the request is ambiguous
-3. **SUGGEST** best practices if the request could be improved
-4. **IMPLEMENT** changes incrementally, testing along the way
-5. **DOCUMENT** any complex logic or non-obvious implementations
+1. **FIRST** check and update `PROJECT_AI.md` with the new requirements
+2. **UNDERSTAND** the full requirement before making changes
+3. **ASK** for clarification if the request is ambiguous
+4. **SUGGEST** best practices if the request could be improved
+5. **IMPLEMENT** changes incrementally, testing along the way
+6. **DOCUMENT** any complex logic or non-obvious implementations
+7. **UPDATE** `PROJECT_AI.md` after completing implementations
+
+### GOLDEN RULE FOR COLORS
+**ALWAYS** use system color variables (`bg-primary`, `text-muted-foreground`, etc.) instead of direct Tailwind colors. The color system was carefully designed to:
+- Maintain visual consistency throughout the application
+- Support dark/light mode automatically
+- Enable future theme changes easily
+- Ensure accessibility with proper contrast ratios
 
 Remember: The goal is to maintain a clean, scalable, and maintainable codebase while implementing the user's requirements efficiently.

@@ -16,16 +16,16 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Painel</h1>
         <p className="text-muted-foreground">
-          Welcome back! Here's an overview of your platform.
+          Bem-vindo de volta! Aqui está uma visão geral da sua plataforma.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium">Receita Total</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -33,14 +33,14 @@ export default function DashboardPage() {
             <div className="flex items-center text-xs text-muted-foreground">
               <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
               <span className="text-green-500">+20.1%</span>
-              <span className="ml-1">from last month</span>
+              <span className="ml-1">do mês passado</span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+            <CardTitle className="text-sm font-medium">Usuários Ativos</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -48,14 +48,14 @@ export default function DashboardPage() {
             <div className="flex items-center text-xs text-muted-foreground">
               <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
               <span className="text-green-500">+180.1%</span>
-              <span className="ml-1">from last month</span>
+              <span className="ml-1">do mês passado</span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Projects</CardTitle>
+            <CardTitle className="text-sm font-medium">Projetos</CardTitle>
             <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -63,14 +63,14 @@ export default function DashboardPage() {
             <div className="flex items-center text-xs text-muted-foreground">
               <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
               <span className="text-green-500">+19%</span>
-              <span className="ml-1">from last month</span>
+              <span className="ml-1">do mês passado</span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+            <CardTitle className="text-sm font-medium">Ativos Agora</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -78,7 +78,7 @@ export default function DashboardPage() {
             <div className="flex items-center text-xs text-muted-foreground">
               <ArrowDownRight className="h-3 w-3 text-red-500 mr-1" />
               <span className="text-red-500">-4.3%</span>
-              <span className="ml-1">from last hour</span>
+              <span className="ml-1">da última hora</span>
             </div>
           </CardContent>
         </Card>
@@ -87,9 +87,9 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle>Atividade Recente</CardTitle>
             <CardDescription>
-              Your platform had 265 activities this week
+              Sua plataforma teve 265 atividades esta semana
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -101,13 +101,13 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      New project deployment
+                      Nova implantação de projeto
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Project Alpha deployed successfully
+                      Projeto Alpha implantado com sucesso
                     </p>
                   </div>
-                  <Badge variant="outline">Completed</Badge>
+                  <Badge variant="outline">Concluído</Badge>
                 </div>
               ))}
             </div>
@@ -116,36 +116,36 @@ export default function DashboardPage() {
 
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>System Health</CardTitle>
+            <CardTitle>Saúde do Sistema</CardTitle>
             <CardDescription>
-              Real-time system performance metrics
+              Métricas de desempenho do sistema em tempo real
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm">CPU Usage</span>
+                <span className="text-sm">Uso de CPU</span>
                 <span className="text-sm font-medium">72%</span>
               </div>
               <Progress value={72} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Memory</span>
+                <span className="text-sm">Memória</span>
                 <span className="text-sm font-medium">56%</span>
               </div>
               <Progress value={56} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Storage</span>
+                <span className="text-sm">Armazenamento</span>
                 <span className="text-sm font-medium">89%</span>
               </div>
               <Progress value={89} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Bandwidth</span>
+                <span className="text-sm">Largura de Banda</span>
                 <span className="text-sm font-medium">43%</span>
               </div>
               <Progress value={43} />
@@ -156,24 +156,24 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>Ações Rápidas</CardTitle>
           <CardDescription>
-            Common tasks and shortcuts
+            Tarefas comuns e atalhos
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Button className="w-full" variant="outline">
-              Create New Project
+              Criar Novo Projeto
             </Button>
             <Button className="w-full" variant="outline">
-              Invite Team Member
+              Convidar Membro da Equipe
             </Button>
             <Button className="w-full" variant="outline">
-              Generate Report
+              Gerar Relatório
             </Button>
             <Button className="w-full" variant="outline">
-              View Documentation
+              Ver Documentação
             </Button>
           </div>
         </CardContent>

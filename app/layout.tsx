@@ -7,8 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI SaaS Platform - Next-Gen AI Application Builder",
-  description: "Build, deploy, and scale AI-powered applications with our comprehensive SaaS platform",
+  title: "Plataforma SaaS IA - Construtor de Aplicações de Próxima Geração",
+  description: "Construa, implante e escale aplicações com inteligência artificial usando nossa plataforma SaaS completa",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

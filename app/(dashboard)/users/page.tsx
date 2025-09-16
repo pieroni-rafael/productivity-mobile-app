@@ -37,18 +37,18 @@ const users = [
     id: 1,
     name: "Alice Johnson",
     email: "alice@example.com",
-    role: "Admin",
-    status: "active",
-    lastActive: "2 minutes ago",
+    role: "Administrador",
+    status: "ativo",
+    lastActive: "2 minutos atrás",
     avatar: null,
   },
   {
     id: 2,
     name: "Bob Smith",
     email: "bob@example.com",
-    role: "Developer",
-    status: "active",
-    lastActive: "1 hour ago",
+    role: "Desenvolvedor",
+    status: "ativo",
+    lastActive: "1 hora atrás",
     avatar: null,
   },
   {
@@ -56,26 +56,26 @@ const users = [
     name: "Carol White",
     email: "carol@example.com",
     role: "Editor",
-    status: "inactive",
-    lastActive: "3 days ago",
+    status: "inativo",
+    lastActive: "3 dias atrás",
     avatar: null,
   },
   {
     id: 4,
     name: "David Brown",
     email: "david@example.com",
-    role: "Viewer",
-    status: "active",
-    lastActive: "5 hours ago",
+    role: "Visualizador",
+    status: "ativo",
+    lastActive: "5 horas atrás",
     avatar: null,
   },
   {
     id: 5,
     name: "Emma Davis",
     email: "emma@example.com",
-    role: "Developer",
-    status: "pending",
-    lastActive: "Never",
+    role: "Desenvolvedor",
+    status: "pendente",
+    lastActive: "Nunca",
     avatar: null,
   },
 ]
@@ -85,19 +85,19 @@ export default function UsersPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Users</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Usuários</h1>
           <p className="text-muted-foreground">
-            Manage team members and permissions
+            Gerencie membros da equipe e permissões
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">
             <Download className="h-4 w-4 mr-2" />
-            Export
+            Exportar
           </Button>
           <Button>
             <Plus className="h-4 w-4 mr-2" />
-            Invite User
+            Convidar Usuário
           </Button>
         </div>
       </div>
@@ -105,52 +105,52 @@ export default function UsersPage() {
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+            <CardTitle className="text-sm font-medium">Total de Usuários</CardTitle>
             <UserCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,234</div>
             <p className="text-xs text-muted-foreground">
-              +12% from last month
+              +12% desde o mês passado
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+            <CardTitle className="text-sm font-medium">Ativos Agora</CardTitle>
             <UserCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">89</div>
             <p className="text-xs text-muted-foreground">
-              Currently online
+              Atualmente online
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending</CardTitle>
+            <CardTitle className="text-sm font-medium">Pendentes</CardTitle>
             <Mail className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">23</div>
             <p className="text-xs text-muted-foreground">
-              Awaiting approval
+              Aguardando aprovação
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Admins</CardTitle>
+            <CardTitle className="text-sm font-medium">Administradores</CardTitle>
             <Shield className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
             <p className="text-xs text-muted-foreground">
-              Administrator accounts
+              Contas de administrador
             </p>
           </CardContent>
         </Card>
@@ -160,41 +160,41 @@ export default function UsersPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search users..."
+            placeholder="Buscar usuários..."
             className="pl-10"
           />
         </div>
         <Button variant="outline">
           <Filter className="h-4 w-4 mr-2" />
-          Filter
+          Filtrar
         </Button>
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="all">All Users</TabsTrigger>
-          <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="pending">Pending</TabsTrigger>
-          <TabsTrigger value="inactive">Inactive</TabsTrigger>
+          <TabsTrigger value="all">Todos os Usuários</TabsTrigger>
+          <TabsTrigger value="active">Ativos</TabsTrigger>
+          <TabsTrigger value="pending">Pendentes</TabsTrigger>
+          <TabsTrigger value="inactive">Inativos</TabsTrigger>
         </TabsList>
 
         <TabsContent value="all">
           <Card>
             <CardHeader>
-              <CardTitle>User Management</CardTitle>
+              <CardTitle>Gerenciamento de Usuários</CardTitle>
               <CardDescription>
-                View and manage all users in your organization
+                Visualize e gerencie todos os usuários da sua organização
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>User</TableHead>
-                    <TableHead>Role</TableHead>
+                    <TableHead>Usuário</TableHead>
+                    <TableHead>Função</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Last Active</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead>Última Atividade</TableHead>
+                    <TableHead className="text-right">Ações</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -219,8 +219,8 @@ export default function UsersPage() {
                       </TableCell>
                       <TableCell>
                         <Badge variant={
-                          user.status === "active" ? "default" :
-                          user.status === "pending" ? "secondary" :
+                          user.status === "ativo" ? "default" :
+                          user.status === "pendente" ? "secondary" :
                           "outline"
                         }>
                           {user.status}
@@ -235,15 +235,15 @@ export default function UsersPage() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuLabel>Ações</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>View Profile</DropdownMenuItem>
-                            <DropdownMenuItem>Edit User</DropdownMenuItem>
-                            <DropdownMenuItem>Change Role</DropdownMenuItem>
-                            <DropdownMenuItem>Reset Password</DropdownMenuItem>
+                            <DropdownMenuItem>Ver Perfil</DropdownMenuItem>
+                            <DropdownMenuItem>Editar Usuário</DropdownMenuItem>
+                            <DropdownMenuItem>Alterar Função</DropdownMenuItem>
+                            <DropdownMenuItem>Redefinir Senha</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="text-destructive">
-                              Remove User
+                              Remover Usuário
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -259,7 +259,7 @@ export default function UsersPage() {
         <TabsContent value="active">
           <Card>
             <CardContent className="flex items-center justify-center h-[400px] text-muted-foreground">
-              Active users will appear here
+              Usuários ativos aparecerão aqui
             </CardContent>
           </Card>
         </TabsContent>
@@ -267,7 +267,7 @@ export default function UsersPage() {
         <TabsContent value="pending">
           <Card>
             <CardContent className="flex items-center justify-center h-[400px] text-muted-foreground">
-              Pending users will appear here
+              Usuários pendentes aparecerão aqui
             </CardContent>
           </Card>
         </TabsContent>
@@ -275,7 +275,7 @@ export default function UsersPage() {
         <TabsContent value="inactive">
           <Card>
             <CardContent className="flex items-center justify-center h-[400px] text-muted-foreground">
-              Inactive users will appear here
+              Usuários inativos aparecerão aqui
             </CardContent>
           </Card>
         </TabsContent>

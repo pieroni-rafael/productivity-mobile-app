@@ -27,61 +27,61 @@ import {
 const projects = [
   {
     id: 1,
-    name: "E-commerce Platform",
-    description: "Modern e-commerce solution with AI-powered recommendations",
-    status: "active",
+    name: "Plataforma E-commerce",
+    description: "Solução moderna de e-commerce com recomendações baseadas em IA",
+    status: "ativo",
     team: 5,
-    lastUpdated: "2 hours ago",
+    lastUpdated: "2 horas atrás",
     progress: 75,
     starred: true,
   },
   {
     id: 2,
-    name: "Analytics Dashboard",
-    description: "Real-time analytics and reporting dashboard",
-    status: "active",
+    name: "Dashboard de Analytics",
+    description: "Dashboard de analytics e relatórios em tempo real",
+    status: "ativo",
     team: 3,
-    lastUpdated: "5 hours ago",
+    lastUpdated: "5 horas atrás",
     progress: 90,
     starred: false,
   },
   {
     id: 3,
-    name: "Mobile App",
-    description: "Cross-platform mobile application",
-    status: "development",
+    name: "App Mobile",
+    description: "Aplicativo mobile multiplataforma",
+    status: "desenvolvimento",
     team: 8,
-    lastUpdated: "1 day ago",
+    lastUpdated: "1 dia atrás",
     progress: 45,
     starred: false,
   },
   {
     id: 4,
-    name: "API Gateway",
-    description: "Centralized API management and gateway service",
-    status: "planning",
+    name: "Gateway de API",
+    description: "Serviço centralizado de gerenciamento e gateway de API",
+    status: "planejamento",
     team: 2,
-    lastUpdated: "3 days ago",
+    lastUpdated: "3 dias atrás",
     progress: 20,
     starred: true,
   },
   {
     id: 5,
-    name: "Machine Learning Pipeline",
-    description: "Automated ML model training and deployment",
-    status: "active",
+    name: "Pipeline de Machine Learning",
+    description: "Treinamento e implantação automatizada de modelos ML",
+    status: "ativo",
     team: 6,
-    lastUpdated: "1 week ago",
+    lastUpdated: "1 semana atrás",
     progress: 60,
     starred: false,
   },
   {
     id: 6,
-    name: "Documentation Portal",
-    description: "Comprehensive documentation and knowledge base",
-    status: "completed",
+    name: "Portal de Documentação",
+    description: "Base de conhecimento e documentação abrangente",
+    status: "concluído",
     team: 2,
-    lastUpdated: "2 weeks ago",
+    lastUpdated: "2 semanas atrás",
     progress: 100,
     starred: false,
   },
@@ -92,14 +92,14 @@ export default function ProjectsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Projetos</h1>
           <p className="text-muted-foreground">
-            Manage and monitor your projects
+            Gerencie e monitore seus projetos
           </p>
         </div>
         <Button>
           <Plus className="h-4 w-4 mr-2" />
-          New Project
+          Novo Projeto
         </Button>
       </div>
 
@@ -107,22 +107,22 @@ export default function ProjectsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search projects..."
+            placeholder="Buscar projetos..."
             className="pl-10"
           />
         </div>
         <Button variant="outline">
           <Filter className="h-4 w-4 mr-2" />
-          Filter
+          Filtrar
         </Button>
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="all">All Projects</TabsTrigger>
-          <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="completed">Completed</TabsTrigger>
-          <TabsTrigger value="archived">Archived</TabsTrigger>
+          <TabsTrigger value="all">Todos os Projetos</TabsTrigger>
+          <TabsTrigger value="active">Ativos</TabsTrigger>
+          <TabsTrigger value="completed">Concluídos</TabsTrigger>
+          <TabsTrigger value="archived">Arquivados</TabsTrigger>
         </TabsList>
 
         <TabsContent value="all" className="space-y-4">
@@ -150,14 +150,14 @@ export default function ProjectsPage() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuLabel>Ações</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Project</DropdownMenuItem>
-                        <DropdownMenuItem>Team Settings</DropdownMenuItem>
+                        <DropdownMenuItem>Ver Detalhes</DropdownMenuItem>
+                        <DropdownMenuItem>Editar Projeto</DropdownMenuItem>
+                        <DropdownMenuItem>Configurações da Equipe</DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-destructive">
-                          Delete Project
+                          Excluir Projeto
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -178,7 +178,7 @@ export default function ProjectsPage() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span>Progress</span>
+                      <span>Progresso</span>
                       <span className="font-medium">{project.progress}%</span>
                     </div>
                     <div className="h-2 bg-secondary rounded-full overflow-hidden">
@@ -192,9 +192,10 @@ export default function ProjectsPage() {
                 <CardFooter>
                   <div className="flex items-center justify-between w-full">
                     <Badge variant={
-                      project.status === "active" ? "default" :
-                      project.status === "completed" ? "secondary" :
-                      project.status === "development" ? "outline" :
+                      project.status === "ativo" ? "default" :
+                      project.status === "concluído" ? "secondary" :
+                      project.status === "desenvolvimento" ? "outline" :
+                      project.status === "planejamento" ? "secondary" :
                       "secondary"
                     }>
                       {project.status}
@@ -216,19 +217,19 @@ export default function ProjectsPage() {
 
         <TabsContent value="active">
           <div className="flex items-center justify-center h-[400px] text-muted-foreground">
-            Active projects will appear here
+            Projetos ativos aparecerão aqui
           </div>
         </TabsContent>
 
         <TabsContent value="completed">
           <div className="flex items-center justify-center h-[400px] text-muted-foreground">
-            Completed projects will appear here
+            Projetos concluídos aparecerão aqui
           </div>
         </TabsContent>
 
         <TabsContent value="archived">
           <div className="flex items-center justify-center h-[400px] text-muted-foreground">
-            Archived projects will appear here
+            Projetos arquivados aparecerão aqui
           </div>
         </TabsContent>
       </Tabs>

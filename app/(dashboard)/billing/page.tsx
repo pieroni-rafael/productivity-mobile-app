@@ -25,57 +25,57 @@ import {
 
 const plans = [
   {
-    name: "Starter",
+    name: "Inicial",
     price: "$29",
-    description: "Perfect for small teams",
+    description: "Perfeito para pequenas equipes",
     features: [
-      "Up to 5 users",
-      "10 GB storage",
-      "Basic analytics",
-      "Email support",
-      "API access",
+      "Até 5 usuários",
+      "10 GB de armazenamento",
+      "Análises básicas",
+      "Suporte por email",
+      "Acesso à API",
     ],
     notIncluded: [
-      "Advanced analytics",
-      "Priority support",
-      "Custom integrations",
+      "Análises avançadas",
+      "Suporte prioritário",
+      "Integrações personalizadas",
     ],
     current: false,
   },
   {
-    name: "Professional",
+    name: "Profissional",
     price: "$99",
-    description: "For growing businesses",
+    description: "Para empresas em crescimento",
     features: [
-      "Up to 20 users",
-      "100 GB storage",
-      "Advanced analytics",
-      "Priority support",
-      "API access",
-      "Custom integrations",
-      "Team collaboration",
+      "Até 20 usuários",
+      "100 GB de armazenamento",
+      "Análises avançadas",
+      "Suporte prioritário",
+      "Acesso à API",
+      "Integrações personalizadas",
+      "Colaboração em equipe",
     ],
     notIncluded: [
-      "White-label options",
-      "Dedicated support",
+      "Opções de marca branca",
+      "Suporte dedicado",
     ],
     current: true,
     popular: true,
   },
   {
-    name: "Enterprise",
+    name: "Empresarial",
     price: "$299",
-    description: "For large organizations",
+    description: "Para grandes organizações",
     features: [
-      "Unlimited users",
-      "Unlimited storage",
-      "Advanced analytics",
-      "Dedicated support",
-      "API access",
-      "Custom integrations",
-      "Team collaboration",
-      "White-label options",
-      "SLA guarantee",
+      "Usuários ilimitados",
+      "Armazenamento ilimitado",
+      "Análises avançadas",
+      "Suporte dedicado",
+      "Acesso à API",
+      "Integrações personalizadas",
+      "Colaboração em equipe",
+      "Opções de marca branca",
+      "Garantia de SLA",
     ],
     notIncluded: [],
     current: false,
@@ -83,30 +83,30 @@ const plans = [
 ]
 
 const invoices = [
-  { id: "INV-001", date: "Jan 1, 2024", amount: "$99.00", status: "paid" },
-  { id: "INV-002", date: "Dec 1, 2023", amount: "$99.00", status: "paid" },
-  { id: "INV-003", date: "Nov 1, 2023", amount: "$99.00", status: "paid" },
-  { id: "INV-004", date: "Oct 1, 2023", amount: "$99.00", status: "paid" },
+  { id: "INV-001", date: "1 Jan, 2024", amount: "$99.00", status: "pago" },
+  { id: "INV-002", date: "1 Dez, 2023", amount: "$99.00", status: "pago" },
+  { id: "INV-003", date: "1 Nov, 2023", amount: "$99.00", status: "pago" },
+  { id: "INV-004", date: "1 Out, 2023", amount: "$99.00", status: "pago" },
 ]
 
 export default function BillingPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Billing</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Faturamento</h1>
         <p className="text-muted-foreground">
-          Manage your subscription and billing details
+          Gerencie sua assinatura e detalhes de faturamento
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Current Plan</CardTitle>
+            <CardTitle className="text-sm font-medium">Plano Atual</CardTitle>
             <Zap className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Professional</div>
+            <div className="text-2xl font-bold">Profissional</div>
             <p className="text-xs text-muted-foreground">
               $99/month
             </p>
@@ -115,33 +115,33 @@ export default function BillingPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Next Payment</CardTitle>
+            <CardTitle className="text-sm font-medium">Próximo Pagamento</CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Feb 1, 2024</div>
+            <div className="text-2xl font-bold">1 Fev, 2024</div>
             <p className="text-xs text-muted-foreground">
-              In 15 days
+              Em 15 dias
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Gasto</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$1,188</div>
             <p className="text-xs text-muted-foreground">
-              Last 12 months
+              Últimos 12 meses
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Usage</CardTitle>
+            <CardTitle className="text-sm font-medium">Uso</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -153,10 +153,10 @@ export default function BillingPage() {
 
       <Tabs defaultValue="plans" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="plans">Plans</TabsTrigger>
-          <TabsTrigger value="payment">Payment Method</TabsTrigger>
-          <TabsTrigger value="invoices">Invoices</TabsTrigger>
-          <TabsTrigger value="usage">Usage</TabsTrigger>
+          <TabsTrigger value="plans">Planos</TabsTrigger>
+          <TabsTrigger value="payment">Forma de Pagamento</TabsTrigger>
+          <TabsTrigger value="invoices">Faturas</TabsTrigger>
+          <TabsTrigger value="usage">Uso</TabsTrigger>
         </TabsList>
 
         <TabsContent value="plans" className="space-y-4">
@@ -168,17 +168,17 @@ export default function BillingPage() {
                     <CardTitle>{plan.name}</CardTitle>
                     {plan.popular && (
                       <Badge className="bg-gradient-to-r from-primary to-primary/60">
-                        Most Popular
+                        Mais Popular
                       </Badge>
                     )}
                     {plan.current && (
-                      <Badge variant="secondary">Current Plan</Badge>
+                      <Badge variant="secondary">Plano Atual</Badge>
                     )}
                   </div>
                   <CardDescription>{plan.description}</CardDescription>
                   <div className="text-3xl font-bold">
                     {plan.price}
-                    <span className="text-sm font-normal text-muted-foreground">/month</span>
+                    <span className="text-sm font-normal text-muted-foreground">/mês</span>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -199,7 +199,7 @@ export default function BillingPage() {
                 </CardContent>
                 <CardFooter>
                   <Button className="w-full" variant={plan.current ? "outline" : "default"}>
-                    {plan.current ? "Current Plan" : "Upgrade"}
+                    {plan.current ? "Plano Atual" : "Fazer Upgrade"}
                   </Button>
                 </CardFooter>
               </Card>
@@ -210,9 +210,9 @@ export default function BillingPage() {
         <TabsContent value="payment">
           <Card>
             <CardHeader>
-              <CardTitle>Payment Method</CardTitle>
+              <CardTitle>Forma de Pagamento</CardTitle>
               <CardDescription>
-                Manage your payment methods
+                Gerencie suas formas de pagamento
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -221,16 +221,16 @@ export default function BillingPage() {
                   <CreditCard className="h-8 w-8" />
                   <div>
                     <p className="font-medium">•••• •••• •••• 4242</p>
-                    <p className="text-sm text-muted-foreground">Expires 12/24</p>
+                    <p className="text-sm text-muted-foreground">Expira em 12/24</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge variant="secondary">Default</Badge>
-                  <Button size="sm" variant="outline">Edit</Button>
+                  <Badge variant="secondary">Padrão</Badge>
+                  <Button size="sm" variant="outline">Editar</Button>
                 </div>
               </div>
               <Button variant="outline" className="w-full">
-                Add Payment Method
+                Adicionar Forma de Pagamento
               </Button>
             </CardContent>
           </Card>
@@ -241,14 +241,14 @@ export default function BillingPage() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle>Invoice History</CardTitle>
+                  <CardTitle>Histórico de Faturas</CardTitle>
                   <CardDescription>
-                    Download your past invoices
+                    Baixe suas faturas anteriores
                   </CardDescription>
                 </div>
                 <Button variant="outline">
                   <Download className="h-4 w-4 mr-2" />
-                  Download All
+                  Baixar Todas
                 </Button>
               </div>
             </CardHeader>
@@ -256,11 +256,11 @@ export default function BillingPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Invoice</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Amount</TableHead>
+                    <TableHead>Fatura</TableHead>
+                    <TableHead>Data</TableHead>
+                    <TableHead>Valor</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead className="text-right">Ações</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -291,15 +291,15 @@ export default function BillingPage() {
           <div className="grid gap-4">
             <Card>
               <CardHeader>
-                <CardTitle>Resource Usage</CardTitle>
+                <CardTitle>Uso de Recursos</CardTitle>
                 <CardDescription>
-                  Monitor your resource consumption
+                  Monitore o consumo dos seus recursos
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Users</span>
+                    <span className="text-sm font-medium">Usuários</span>
                     <span className="text-sm text-muted-foreground">15 / 20</span>
                   </div>
                   <Progress value={75} />
@@ -307,7 +307,7 @@ export default function BillingPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Storage</span>
+                    <span className="text-sm font-medium">Armazenamento</span>
                     <span className="text-sm text-muted-foreground">45 GB / 100 GB</span>
                   </div>
                   <Progress value={45} />
@@ -315,7 +315,7 @@ export default function BillingPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">API Calls</span>
+                    <span className="text-sm font-medium">Chamadas API</span>
                     <span className="text-sm text-muted-foreground">78,234 / 100,000</span>
                   </div>
                   <Progress value={78} />
@@ -323,7 +323,7 @@ export default function BillingPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Bandwidth</span>
+                    <span className="text-sm font-medium">Largura de Banda</span>
                     <span className="text-sm text-muted-foreground">234 GB / 500 GB</span>
                   </div>
                   <Progress value={47} />
@@ -335,13 +335,13 @@ export default function BillingPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Info className="h-5 w-5 text-blue-500" />
-                  <CardTitle className="text-base">Usage Information</CardTitle>
+                  <CardTitle className="text-base">Informações de Uso</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Your usage resets on the 1st of each month. If you exceed your plan limits,
-                  additional charges may apply. Consider upgrading your plan for more resources.
+                  Seu uso é reiniciado no dia 1º de cada mês. Se você exceder os limites do seu plano,
+                  taxas adicionais podem ser aplicadas. Considere fazer upgrade do seu plano para mais recursos.
                 </p>
               </CardContent>
             </Card>
