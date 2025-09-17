@@ -114,33 +114,31 @@ Who will use this application
 - **USE** Zod for schema validation
 - **AVOID** unnecessary client-side state
 
-### 6. Authentication & Database (MANDATORY: Firebase)
+### 6. Authentication & Database (Integrated BaaS)
 
-#### Firebase is the ONLY approved solution for:
-- **Authentication**: Firebase Auth for all user authentication
-- **Database**: Firestore for all data storage
-- **File Storage**: Firebase Storage for images/files
-- **Real-time**: Firestore real-time listeners for live updates
+#### This boilerplate uses an integrated Backend-as-a-Service:
+- **Authentication**: Built-in auth system (no configuration needed)
+- **Database**: Automatic database provisioning per app
+- **File Storage**: Integrated file storage
+- **Real-time**: WebSocket support for live updates
 
 #### Implementation Requirements:
-- **ALWAYS** use Firebase SDK v9+ (modular syntax)
-- **NEVER** use other auth solutions (NextAuth, Clerk, Supabase, etc.)
-- **NEVER** use other databases (PostgreSQL, MongoDB, MySQL, etc.)
-- **USE** Firebase Admin SDK for server-side operations in API routes
-- **USE** Firebase Client SDK for client-side operations
-- **IMPLEMENT** proper security rules in Firestore
-- **USE** Firebase Auth custom claims for role-based access control
+- **USE** the provided BaaS client SDK (`lib/baas/client.ts`)
+- **NEVER** try to connect directly to external databases
+- **NEVER** implement your own auth (login/signup pages are pre-built)
+- **ALL** backend operations go through the BaaS API
+- **NO CONFIGURATION NEEDED** - everything is automatic
 
-#### Firebase Setup Files:
-- `lib/firebase/client.ts` - Client-side Firebase configuration
-- `lib/firebase/admin.ts` - Server-side Firebase Admin configuration
-- `lib/firebase/auth-context.tsx` - Auth context provider
-- `middleware.ts` - Auth middleware for protected routes
+#### BaaS Client Files:
+- `lib/baas/client.ts` - BaaS client SDK
+- `lib/baas/auth-context.tsx` - Auth context provider
+- `lib/baas/hooks.ts` - React hooks for data fetching
+- `middleware.ts` - Auth middleware (pre-configured)
 
 ### 7. Data Fetching Patterns
-- **USE** Firestore for ALL data fetching
-- **PREFER** Server Components with Firebase Admin SDK when possible
-- **USE** Firestore real-time listeners for live data in client components
+- **USE** the BaaS client for ALL data operations
+- **PREFER** Server Components with BaaS SDK when possible
+- **USE** the provided hooks for real-time data in client components
 - **IMPLEMENT** loading and error states properly
 - **CACHE** data appropriately using Next.js caching strategies
 - **HANDLE** errors gracefully with try-catch blocks
