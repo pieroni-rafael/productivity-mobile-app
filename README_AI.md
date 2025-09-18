@@ -1,16 +1,102 @@
 # AI Agent Instructions - Next.js ShadCN Boilerplate
 
+## CRITICAL: Understanding Your Role
+
+### You Are Working With a Template
+- **YOU ALWAYS START** with a pre-built Next.js boilerplate/template
+- **YOUR JOB** is to MODIFY and ENHANCE this template to meet the user's needs
+- **NEVER** create a new project from scratch - the template is your starting point
+- **TRANSFORM** the generic template into the specific app the user wants
+
+### Production-Ready Mindset
+When a user requests something like "Create a todo app" or "Build a task manager":
+- **ASSUME** they want a PRODUCTION-READY application, not a toy example
+- **THINK** like building for real users who will actually use this app
+- **IMPLEMENT** professional features, not just basic CRUD operations
+- **DESIGN** for scalability, user experience, and real-world usage
+
+## MANDATORY: Planning Before Implementation
+
+### When User Requests a New App (e.g., "Create a todo app"):
+
+1. **IMMEDIATELY CREATE A PLAN** before any coding:
+   ```markdown
+   ## Implementation Plan for [App Name]
+   
+   ### Core Features (MVP - Phase 1):
+   1. **Feature 1**: [Description with specific functionality]
+   2. **Feature 2**: [Description with specific functionality]
+   3. **Feature 3**: [Description with specific functionality]
+   
+   ### User Experience Enhancements:
+   - [UX improvement 1]
+   - [UX improvement 2]
+   
+   ### Technical Architecture:
+   - Data models needed
+   - Key components to create
+   - State management approach
+   
+   ### Implementation Steps:
+   1. Set up data models and BaaS integration
+   2. Create core UI components
+   3. Implement business logic
+   4. Add user experience features
+   5. Test and refine
+   ```
+
+2. **PRESENT THE PLAN** to the user for approval
+3. **EXECUTE** the plan systematically
+4. **UPDATE** PROJECT_AI.md with progress after each step
+
+### Example: "Create a Todo App" Should Result In:
+
+**BAD APPROACH** ❌:
+- Simple list with add/delete
+- Basic checkbox to mark complete
+- No user considerations
+
+**GOOD APPROACH** ✅:
+- **Smart Features**: Due dates, priorities, categories/projects
+- **User Experience**: Drag-and-drop reordering, keyboard shortcuts, quick add
+- **Productivity Tools**: Recurring tasks, subtasks, progress tracking
+- **Data Intelligence**: Search, filters, sorting, analytics dashboard
+- **Professional Polish**: Smooth animations, loading states, error handling
+- **Real-world Ready**: Data persistence, user preferences, export capabilities
+
 ## Project Structure Overview
 
 This is a modern Next.js application template with TypeScript, Tailwind CSS, and ShadCN UI components. The project follows best practices for scalability and maintainability.
 
 ### Key Directories:
-- `app/` - Next.js App Router pages and layouts
-- `components/` - React components (custom components here)
-- `components/ui/` - ShadCN UI primitive components (avoid editing these)
-- `components/layout/` - Layout-specific components (header, sidebar, etc.)
-- `lib/` - Utility functions and configurations
+- `app/` - Next.js App Router pages and layouts (MODIFY existing routes, ADD new ones)
+- `components/` - React components (CREATE your custom components here)
+- `components/ui/` - ShadCN UI primitive components (USE these, don't recreate)
+- `components/layout/` - Layout-specific components (CUSTOMIZE for your app)
+- `lib/` - Utility functions and configurations (EXTEND with your logic)
 - `public/` - Static assets
+
+## Template Modification Strategy
+
+### What to Keep:
+- Authentication system (already integrated)
+- Database setup (BaaS is pre-configured)
+- UI component library (ShadCN)
+- Dark mode support
+- Responsive layout structure
+
+### What to Modify:
+- Route names and structure (rename /projects to /tasks, etc.)
+- Page content and functionality
+- Navigation items in sidebar/header
+- Data models and schemas
+- Business logic and workflows
+
+### What to Add:
+- App-specific features
+- Custom components for your use case
+- New API endpoints if needed
+- Domain-specific functionality
 
 ## IMPORTANT RULES FOR AI MODIFICATIONS
 
@@ -223,15 +309,17 @@ export default function YourCard() {
 }
 ```
 
-## Available Example Routes
+## Template Routes to Transform
 
-The template includes 5 example routes to demonstrate different patterns:
+The template includes 5 example routes that you should TRANSFORM for the user's app:
 
-1. `/dashboard` - Main dashboard with metrics and charts
-2. `/settings` - User settings and preferences
-3. `/projects` - Project management interface
-4. `/users` - User management system
-5. `/billing` - Billing and subscription management
+1. `/dashboard` - Transform into app-specific dashboard (e.g., task overview, analytics)
+2. `/settings` - Keep but customize for app-specific preferences
+3. `/projects` - Rename/repurpose for main functionality (e.g., /tasks, /documents)
+4. `/users` - Adapt based on app needs (team members, collaborators, etc.)
+5. `/billing` - Keep if app needs monetization, remove if not needed
+
+**IMPORTANT**: Don't just add new routes - TRANSFORM existing ones to maintain consistency
 
 ## Common Modifications Scenarios
 
@@ -296,21 +384,40 @@ Before considering any modification complete:
 
 ## Final Notes
 
-This boilerplate is designed to be a starting point. When users request modifications:
+### When Users Request a New App:
 
-1. **FIRST** check and update `PROJECT_AI.md` with the new requirements
-2. **UNDERSTAND** the full requirement before making changes
-3. **ASK** for clarification if the request is ambiguous
-4. **SUGGEST** best practices if the request could be improved
-5. **IMPLEMENT** changes incrementally, testing along the way
-6. **DOCUMENT** any complex logic or non-obvious implementations
-7. **UPDATE** `PROJECT_AI.md` after completing implementations
+1. **CREATE A PLAN FIRST** - Don't jump into coding
+2. **THINK PRODUCTION** - This isn't a tutorial, it's a real app
+3. **PROPOSE 2-3 CORE FEATURES** - Start focused but professional
+4. **TRANSFORM THE TEMPLATE** - Don't add alongside, replace and modify
+5. **USE EXISTING INFRASTRUCTURE** - Auth, DB, and UI are already there
+6. **IMPLEMENT SYSTEMATICALLY** - Follow your plan step by step
+7. **UPDATE PROJECT_AI.md** - Keep track of what you're building
 
-### GOLDEN RULE FOR COLORS
-**ALWAYS** use system color variables (`bg-primary`, `text-muted-foreground`, etc.) instead of direct Tailwind colors. The color system was carefully designed to:
-- Maintain visual consistency throughout the application
-- Support dark/light mode automatically
-- Enable future theme changes easily
-- Ensure accessibility with proper contrast ratios
+### Quality Checklist for Any App:
+- [ ] Has at least 2-3 meaningful features beyond basic CRUD
+- [ ] Includes proper loading and error states
+- [ ] Provides good UX with feedback messages
+- [ ] Uses the existing auth system properly
+- [ ] Leverages the BaaS for data persistence
+- [ ] Maintains visual consistency with system colors
+- [ ] Works well on mobile and desktop
+- [ ] Feels like a real product, not a demo
 
-Remember: The goal is to maintain a clean, scalable, and maintainable codebase while implementing the user's requirements efficiently.
+### Example Transformations:
+- **"Todo App"** → Professional task management system with projects, deadlines, and productivity analytics
+- **"Note App"** → Knowledge management system with tags, search, markdown support, and organization
+- **"Budget App"** → Financial tracking with categories, trends, budgets, and insights
+- **"Recipe App"** → Culinary platform with meal planning, shopping lists, and nutritional data
+- **"Habit Tracker"** → Personal development tool with streaks, statistics, and goal setting
+
+### GOLDEN RULES
+
+1. **PLANNING RULE**: Always create a comprehensive plan before coding when building a new app
+2. **PRODUCTION RULE**: Build like it's going to production tomorrow with real users
+3. **TRANSFORMATION RULE**: Modify the template, don't just add to it
+4. **COLOR RULE**: Use system color variables, never direct Tailwind colors
+5. **FEATURE RULE**: Implement meaningful features, not just basic functionality
+6. **USER RULE**: Think about the actual end user, not just the technical requirements
+
+Remember: You're not building a demo or tutorial - you're creating a real application that solves real problems for real users. The template is your canvas - transform it into something valuable.
