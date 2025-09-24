@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Search, User, Moon, Sun, Menu } from "lucide-react";
+import { Bell, Search, User, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,8 +14,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "next-themes";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Sidebar } from "./sidebar";
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -23,17 +21,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-4 md:px-6">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 w-72">
-            <Sidebar />
-          </SheetContent>
-        </Sheet>
+        <div className="flex items-center gap-2 font-bold text-lg">
+          <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center">
+            <span className="text-primary text-sm font-bold">L</span>
+          </div>
+          <span className="hidden sm:inline-block">Logo</span>
+        </div>
 
         <div className="flex-1 flex items-center gap-4 md:gap-6">
           <form className="hidden md:flex flex-1 max-w-sm">
