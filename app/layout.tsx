@@ -3,12 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/lib/firebase-auth";
+import { I18nProvider } from "@/components/i18n-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Plataforma SaaS IA - Construtor de Aplicações de Próxima Geração",
-  description: "Construa, implante e escale aplicações com inteligência artificial usando nossa plataforma SaaS completa",
+  title: "Focus Flow - Produtividade para Empreendedores Digitais",
+  description: "Aplicativo de produtividade com Pomodoro, gestão de tarefas e análise de progresso",
 };
 
 export default function RootLayout({
@@ -25,8 +27,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <I18nProvider>
+            <AuthProvider>
+              {children}
+              <Toaster />
+            </AuthProvider>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

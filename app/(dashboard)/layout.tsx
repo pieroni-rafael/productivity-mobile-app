@@ -1,6 +1,4 @@
-import { Sidebar } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
-import { MobileNav } from "@/components/layout/mobile-nav"
+import BottomNavigation from "@/components/layout/bottom-navigation"
 
 export default function DashboardLayout({
   children,
@@ -8,17 +6,13 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen">
-      <aside className="hidden md:flex w-64 flex-col fixed inset-y-0 z-50 border-r bg-card">
-        <Sidebar />
-      </aside>
-      <div className="flex-1 md:ml-64">
-        <Header />
-        <main className="flex-1 p-4 md:p-6 pb-20 md:pb-6">
-          {children}
-        </main>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1 overflow-y-auto pb-20">
+        {children}
+      </main>
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <BottomNavigation />
       </div>
-      <MobileNav />
     </div>
   )
 }
