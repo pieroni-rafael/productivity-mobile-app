@@ -16,13 +16,13 @@ import {
   Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/firebase-auth";
+import { useAuth } from "@/lib/auth-context";
 import { useRouter } from "next/navigation";
 import { useUserStats } from "@/hooks/use-user-stats";
 import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const { userStats, updateDailyGoals, updatePreferences, loading } =
@@ -67,7 +67,7 @@ const Settings = () => {
 
   const handleLogout = async (): Promise<void> => {
     try {
-      await logout();
+      await signOut();
       router.push("/login");
     } catch (error) {
       console.error("Error logging out:", error);

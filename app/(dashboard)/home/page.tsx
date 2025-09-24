@@ -24,7 +24,7 @@ import {
   Award,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/firebase-auth";
+import { useAuth } from "@/lib/auth-context";
 import { useRouter } from "next/navigation";
 import { useTasks } from "@/hooks/use-tasks";
 import { usePomodoroSessions } from "@/hooks/use-pomodoro-sessions";

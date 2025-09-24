@@ -1,161 +1,112 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-  DocumentData,
-  Timestamp,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { useAuth } from "@/lib/firebase-auth";
+import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "@/lib/auth-context";
 
-interface Task extends DocumentData {
-  id: string
-  userId: string
-  title: string
-  description?: string
-  completed: boolean
-  createdAt: Date | Timestamp
-  updatedAt: Date | Timestamp
-  completedAt?: Date | Timestamp | null
-  priority?: "low" | "medium" | "high"
-  category?: string
+interface Task {
+  id: string;
+  userId: string;
+  title: string;
+  description?: string;
+  completed: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date | null;
+  priority?: "low" | "medium" | "high";
+  category?: string;
 }
 
 interface TaskData {
-  title: string
-  description?: string
-  priority?: "low" | "medium" | "high"
-  category?: string
+  title: string;
+  description?: string;
+  priority?: "low" | "medium" | "high";
+  category?: string;
 }
 
 interface UseTasksReturn {
-  tasks: Task[]
-  completedTasks: Task[]
-  pendingTasks: Task[]
-  todayCompletedTasks: Task[]
-  loading: boolean
-  error: string | null
-  addTask: (taskData: TaskData) => Promise<void>
-  updateTask: (taskId: string, updates: Partial<TaskData>) => Promise<void>
-  deleteTask: (taskId: string) => Promise<void>
-  toggleTask: (taskId: string) => Promise<void>
+  tasks: Task[];
+  completedTasks: Task[];
+  pendingTasks: Task[];
+  todayCompletedTasks: Task[];
+  loading: boolean;
+  error: string | null;
+  addTask: (taskData: TaskData) => Promise<void>;
+  updateTask: (taskId: string, updates: Partial<TaskData>) => Promise<void>;
+  deleteTask: (taskId: string) => Promise<void>;
+  toggleTask: (taskId: string) => Promise<void>;
 }
 
 export const useTasks = (): UseTasksReturn => {
   const { user } = useAuth();
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    // Load tasks from localStorage
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("tasks");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Convert date strings back to Date objects
+        return parsed.map((task: any) => ({
+          ...task,
+          createdAt: new Date(task.createdAt),
+          updatedAt: new Date(task.updatedAt),
+          completedAt: task.completedAt ? new Date(task.completedAt) : null,
+        }));
+      }
+    }
+    return [];
+  });
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) {
-      setTasks([]);
-      setLoading(false);
-      return;
+    // Save tasks to localStorage whenever they change
+    if (typeof window !== "undefined") {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     }
+  }, [tasks]);
 
-    const tasksRef = collection(db, "tasks");
-    const q = query(
-      tasksRef,
-      where("userId", "==", user.uid),
-      orderBy("createdAt", "desc")
-    );
+  const addTask = useCallback(async (taskData: TaskData): Promise<void> => {
+    if (!user) return;
 
-    const unsubscribe = onSnapshot(
-      q,
-      (snapshot) => {
-        const tasksData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        } as Task));
-        setTasks(tasksData);
-        setLoading(false);
-        setError(null);
-      },
-      (error) => {
-        console.error("Error fetching tasks:", error);
-        setError(error.message);
-        setLoading(false);
-      }
-    );
-
-    return () => unsubscribe();
+    const newTask: Task = {
+      id: Date.now().toString(),
+      userId: user.id,
+      ...taskData,
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    setTasks(prev => [newTask, ...prev]);
   }, [user]);
 
-  const addTask = async (taskData: TaskData): Promise<void> => {
-    if (!user) return;
+  const updateTask = useCallback(async (taskId: string, updates: Partial<TaskData>): Promise<void> => {
+    setTasks(prev => prev.map(task => 
+      task.id === taskId 
+        ? { ...task, ...updates, updatedAt: new Date() }
+        : task
+    ));
+  }, []);
 
-    try {
-      const tasksRef = collection(db, "tasks");
-      await addDoc(tasksRef, {
-        ...taskData,
-        userId: user.uid,
-        completed: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-    } catch (error) {
-      console.error("Error adding task:", error);
-      const err = error as Error;
-      setError(err.message);
-    }
-  };
+  const deleteTask = useCallback(async (taskId: string): Promise<void> => {
+    setTasks(prev => prev.filter(task => task.id !== taskId));
+  }, []);
 
-  const updateTask = async (taskId: string, updates: Partial<TaskData>): Promise<void> => {
-    if (!user) return;
-
-    try {
-      const taskRef = doc(db, "tasks", taskId);
-      await updateDoc(taskRef, {
-        ...updates,
-        updatedAt: new Date(),
-      });
-    } catch (error) {
-      console.error("Error updating task:", error);
-      const err = error as Error;
-      setError(err.message);
-    }
-  };
-
-  const deleteTask = async (taskId: string): Promise<void> => {
-    if (!user) return;
-
-    try {
-      const taskRef = doc(db, "tasks", taskId);
-      await deleteDoc(taskRef);
-    } catch (error) {
-      console.error("Error deleting task:", error);
-      const err = error as Error;
-      setError(err.message);
-    }
-  };
-
-  const toggleTask = async (taskId: string): Promise<void> => {
-    if (!user) return;
-
+  const toggleTask = useCallback(async (taskId: string): Promise<void> => {
     const task = tasks.find((t) => t.id === taskId);
     if (!task) return;
 
-    try {
-      await updateTask(taskId, {
-        completed: !task.completed,
-        completedAt: !task.completed ? new Date() : null,
-      } as Partial<TaskData>);
-    } catch (error) {
-      console.error("Error toggling task:", error);
-      const err = error as Error;
-      setError(err.message);
-    }
-  };
+    setTasks(prev => prev.map(t => 
+      t.id === taskId 
+        ? { 
+            ...t, 
+            completed: !t.completed,
+            completedAt: !t.completed ? new Date() : null,
+            updatedAt: new Date()
+          }
+        : t
+    ));
+  }, [tasks]);
 
   // Computed values
   const completedTasks = tasks.filter((task) => task.completed);
@@ -163,18 +114,7 @@ export const useTasks = (): UseTasksReturn => {
   const todayCompletedTasks = completedTasks.filter((task) => {
     if (!task.completedAt) return false;
     const today = new Date();
-    
-    // Handle both Date and Timestamp objects
-    let completedDate: Date;
-    if (task.completedAt instanceof Date) {
-      completedDate = task.completedAt;
-    } else if (task.completedAt && typeof task.completedAt === 'object' && 'toDate' in task.completedAt) {
-      completedDate = (task.completedAt as Timestamp).toDate();
-    } else {
-      return false;
-    }
-    
-    return completedDate.toDateString() === today.toDateString();
+    return task.completedAt.toDateString() === today.toDateString();
   });
 
   return {

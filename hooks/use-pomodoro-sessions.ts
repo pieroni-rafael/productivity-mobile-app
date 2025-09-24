@@ -1,112 +1,86 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  collection,
-  addDoc,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-  Timestamp,
-  DocumentData,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { useAuth } from "@/lib/firebase-auth";
+import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "@/lib/auth-context";
 
-interface PomodoroSession extends DocumentData {
-  id: string
-  userId: string
-  type: "work" | "break" | "longBreak"
-  completed: boolean
-  startedAt: Timestamp
-  createdAt: Timestamp
-  duration?: number
-  taskId?: string
+interface PomodoroSession {
+  id: string;
+  userId: string;
+  type: "work" | "shortBreak" | "longBreak";
+  completed: boolean;
+  startedAt: Date;
+  completedAt?: Date;
+  createdAt: Date;
+  duration?: number;
+  taskId?: string;
 }
 
 interface PomodoroSessionData {
-  type: "work" | "break" | "longBreak"
-  completed: boolean
-  duration?: number
-  taskId?: string
+  type: "work" | "shortBreak" | "longBreak";
+  completed: boolean;
+  startedAt: Date;
+  completedAt: Date;
+  duration?: number;
+  taskId?: string;
 }
 
 interface UsePomodoroSessionsReturn {
-  sessions: PomodoroSession[]
-  todaySessions: PomodoroSession[]
-  todayPomodoros: number
-  currentStreak: number
-  loading: boolean
-  error: string | null
-  addSession: (sessionData: PomodoroSessionData) => Promise<void>
+  sessions: PomodoroSession[];
+  todaySessions: PomodoroSession[];
+  todayPomodoros: number;
+  currentStreak: number;
+  loading: boolean;
+  error: string | null;
+  addSession: (sessionData: PomodoroSessionData) => Promise<void>;
 }
 
 export const usePomodoroSessions = (): UsePomodoroSessionsReturn => {
   const { user } = useAuth();
-  const [sessions, setSessions] = useState<PomodoroSession[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [sessions, setSessions] = useState<PomodoroSession[]>(() => {
+    // Load sessions from localStorage
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("pomodoroSessions");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Convert date strings back to Date objects
+        return parsed.map((session: any) => ({
+          ...session,
+          startedAt: new Date(session.startedAt),
+          completedAt: session.completedAt ? new Date(session.completedAt) : undefined,
+          createdAt: new Date(session.createdAt),
+        }));
+      }
+    }
+    return [];
+  });
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) {
-      setSessions([]);
-      setLoading(false);
-      return;
+    // Save sessions to localStorage whenever they change
+    if (typeof window !== "undefined") {
+      localStorage.setItem("pomodoroSessions", JSON.stringify(sessions));
     }
+  }, [sessions]);
 
-    const sessionsRef = collection(db, "pomodoroSessions");
-    const q = query(
-      sessionsRef,
-      where("userId", "==", user.uid),
-      orderBy("startedAt", "desc")
-    );
-
-    const unsubscribe = onSnapshot(
-      q,
-      (snapshot) => {
-        const sessionsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        } as PomodoroSession));
-        setSessions(sessionsData);
-        setLoading(false);
-        setError(null);
-      },
-      (error) => {
-        console.error("Error fetching pomodoro sessions:", error);
-        setError(error.message);
-        setLoading(false);
-      }
-    );
-
-    return () => unsubscribe();
-  }, [user]);
-
-  const addSession = async (sessionData: PomodoroSessionData): Promise<void> => {
+  const addSession = useCallback(async (sessionData: PomodoroSessionData): Promise<void> => {
     if (!user) return;
 
-    try {
-      const sessionsRef = collection(db, "pomodoroSessions");
-      await addDoc(sessionsRef, {
-        ...sessionData,
-        userId: user.uid,
-        startedAt: Timestamp.fromDate(new Date()),
-        createdAt: Timestamp.fromDate(new Date()),
-      });
-    } catch (error) {
-      console.error("Error adding pomodoro session:", error);
-      const err = error as Error;
-      setError(err.message);
-    }
-  };
+    const newSession: PomodoroSession = {
+      id: Date.now().toString(),
+      userId: user.id,
+      ...sessionData,
+      createdAt: new Date(),
+    };
+    
+    setSessions(prev => [newSession, ...prev]);
+  }, [user]);
 
   // Computed values
   const todaySessions = sessions.filter((session) => {
     if (!session.startedAt) return false;
     const today = new Date();
-    const sessionDate = session.startedAt.toDate();
-    return sessionDate.toDateString() === today.toDateString();
+    return session.startedAt.toDateString() === today.toDateString();
   });
 
   const todayPomodoros = todaySessions.filter(
@@ -136,7 +110,7 @@ const calculateStreak = (sessions: PomodoroSession[]): number => {
   // Group sessions by date
   const sessionsByDate: Record<string, PomodoroSession[]> = {};
   workSessions.forEach((session) => {
-    const date = session.startedAt.toDate().toDateString();
+    const date = session.startedAt.toDateString();
     if (!sessionsByDate[date]) {
       sessionsByDate[date] = [];
     }

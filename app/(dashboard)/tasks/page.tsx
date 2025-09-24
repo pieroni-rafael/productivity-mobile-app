@@ -15,7 +15,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/firebase-auth";
+import { useAuth } from "@/lib/auth-context";
 import { useTasks } from "@/hooks/use-tasks";
 
 // Priority type

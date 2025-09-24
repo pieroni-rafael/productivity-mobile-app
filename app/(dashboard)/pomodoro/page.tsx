@@ -13,7 +13,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/firebase-auth";
+import { useAuth } from "@/lib/auth-context";
 import { usePomodoroSessions } from "@/hooks/use-pomodoro-sessions";
 import { useUserStats } from "@/hooks/use-user-stats";
 

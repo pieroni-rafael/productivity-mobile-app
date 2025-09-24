@@ -14,7 +14,7 @@ import {
   Zap,
   LucideIcon,
 } from "lucide-react";
-import { useAuth } from "@/lib/firebase-auth";
+import { useAuth } from "@/lib/auth-context";
 import { useTasks } from "@/hooks/use-tasks";
 import { usePomodoroSessions } from "@/hooks/use-pomodoro-sessions";
 import { useUserStats } from "@/hooks/use-user-stats";
